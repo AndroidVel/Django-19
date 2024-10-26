@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <b>{{ error }}</b>
+        <p>
+
+        <label for="username">Введите логин:</label>
+        <input type="text" id="username" name="username" maxlength="30" value={{username}} required>
+        <p>
+
+        <label for="password">Введите пароль:</label>
+        <input type="text" id="password" name="password" minlength="8" value={{password}} required>
+        <p>
+
+        <label for="repeat_password">Повторите пароль:</label>
+        <input type="text" id="repeat_password" name="repeat_password" minlength="8" value={{repeat_password}} required>
+        <p>
+
+        <label for="age">Введите свой возраст:</label>
+        <input type="number" id="age" name="age" maxlength="3" value={{age}} required>
+        <button type="submit">Отправить</button>
+    </form>
+</body>
+</html>
