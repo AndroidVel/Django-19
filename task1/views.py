@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import UserRegister
 from .models import *
-
+from django.core.paginator import Paginator
 
 def main_page(request):
     return render(request, 'main_page.html')
@@ -33,7 +33,7 @@ def sign_up_by_django(request):
         form = UserRegister(request.POST)
         info['form'] = form
         if form.is_valid():
-            username = form.cleaned_data['username']
+            username = form.cleaned_data['user']
             password = form.cleaned_data['password']
             repeat_password = form.cleaned_data['repeat_password']
             age = form.cleaned_data['age']
@@ -52,3 +52,10 @@ def sign_up_by_django(request):
         else:
             form = UserRegister()
     return render(request, 'registration_page.html', info)
+
+def news(request):
+    news = News.objects.all().order_by('-date')
+    paginator = Paginator(news, 2)
+    page = request.GET.get('page')
+    page_obj = paginator.get_page(page)
+    return render(request, 'news.html', {'news': page_obj})

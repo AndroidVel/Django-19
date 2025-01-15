@@ -22,6 +22,7 @@ from task1.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('platform/', main_page),
+    path('platform/news/', news),
     path('platform/games/', shop),
     path('platform/cart/', cart),
     path('platform/django_sign_up/', sign_up_by_django)
